@@ -241,7 +241,7 @@ class Ui_DialogAnalog(object):
         self.pushButtonSaveRT.setText(_translate("DialogAnalog", "SAVE RT"))
         self.pushButtonSaveRT.setShortcut(_translate("DialogAnalog", "Return"))
         self.pushButtonNoRT.setText(_translate("DialogAnalog", "NO RT"))
-        self.pushButtonNoRT.setShortcut(_translate("DialogAnalog", "Ctrl+S"))
+        self.pushButtonNoRT.setShortcut(_translate("DialogAnalog", "N"))
         self.pushButtonForward.setText(_translate("DialogAnalog", ">>"))
         self.pushButtonForward.setShortcut(_translate("DialogAnalog", "Right"))
         self.pushButtonAmpP.setText(_translate("DialogAnalog", "AMP +"))

@@ -56,7 +56,7 @@ class MyForm(QMainWindow):
 
     def load_edf(self):
         try:
-            self.fileNameEDF, OK = QFileDialog.getOpenFileName(self, 'Open file', ".\\", "EDF files (*.edf)",options=self.options)
+            self.fileNameEDF, OK = QFileDialog.getOpenFileName(self, 'Open file', "", "EDF files (*.edf)",options=self.options)
             if OK:
                 self.default_dir=os.path.dirname(self.fileNameEDF)
                 self.ui.labelEDFFile.setText(self.fileNameEDF)
@@ -125,10 +125,6 @@ class MyForm(QMainWindow):
         # plot origininal trace
         self.p1.plot(x2, y, pen=(255, 0, 0), name="Green curve", clear=True)
         self.p1.plot([rtonset, rtonset], [0, y.max()], pen=pg.mkPen('m', width=2))
-        text = pg.TextItem(
-            html=f'<div style="text-align: center"><span style="color: #FFF;font-size: 16pt;">{self.current_ch}</span></div>',
-            anchor=(0.5, 0.5))
-        self.p1.addItem(text)
 
         # plot output trace
         self.p2.plot(x2, y2, pen=(0, 255, 0), name="Gr curve", clear=True)
@@ -149,6 +145,11 @@ class MyForm(QMainWindow):
         y_button = analog_trace.button.values
         y_button = y_button * y2.max()  # normalize
         self.p2.plot(x_button, y_button, pen=(200, 50, 100))
+        color=analog_trace.color.values[30]
+        text = pg.TextItem(
+            html=f'<div style="text-align: center"><span style="color: #FFF;font-size: 16pt;">{self.current_ch} {color}</span></div>',
+            anchor=(0.5, 0.5))
+        self.p2.addItem(text)
 
     def sync_analog_edf(self):
         self.update_rt_plot()

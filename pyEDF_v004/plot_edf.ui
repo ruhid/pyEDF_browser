@@ -130,7 +130,7 @@
           <string>NO RT</string>
          </property>
          <property name="shortcut">
-          <string>Ctrl+S</string>
+          <string>N</string>
          </property>
         </widget>
        </item>
