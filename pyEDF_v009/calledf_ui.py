@@ -51,6 +51,7 @@ class MyForm(QMainWindow):
         self.ui_edf.spinBoxSyncAnalogEDF.valueChanged.connect(self.sync_analog_edf)
         self.ui_edf.pushButtonNoRT.clicked.connect(self.no_rt)
         self.ui_edf.pushButtonDetectRT.clicked.connect(self.rt_trshold_onset_detect)
+        self.ui_edf.checkBoxAutoDetect.clicked.connect(self.set_auto_rt)
         self.p1 = self.ui_edf.graphicsView.addPlot(row=0, col=0)
         self.p2 = self.ui_edf.graphicsView.addPlot(row=1, col=0)
         self.current_ch_index = 0
@@ -279,6 +280,11 @@ class MyForm(QMainWindow):
                                        pen=pg.mkPen('y', width=2))
         self.auto_rt=onset
 
+
+    def set_auto_rt(self):
+        if not self.ui_edf.checkBoxAutoDetect.isChecked():
+            self.auto_rt=0
+
     def sync_analog_edf(self):
         self.update_rt_plot()
 
@@ -325,9 +331,15 @@ class MyForm(QMainWindow):
 
         self.update_rt_plot()
         self.need_to_filter = True
-        if self.current_ch in self.rts_df.index:
+
+
+        if (self.current_ch in self.rts_df.index) and (self.rts_df.rt[self.current_ch]>0):
             self.ui_edf.spinBoxRtOnset.setValue(int(self.rts_df.loc[self.current_ch, "rt"]))
             print(self.ui_edf.spinBoxRtOnset.value())
+        else:
+            print("auto rt", self.auto_rt)
+            if self.ui_edf.checkBoxAutoSet.isChecked():
+                self.ui_edf.spinBoxRtOnset.setValue(int(self.auto_rt*self.sample_rate))
         self.autoscale()
 
     def channel_backw(self):
@@ -340,8 +352,15 @@ class MyForm(QMainWindow):
         print(self.current_ch_index)
         self.update_rt_plot()
         self.need_to_filter = True
-        if self.current_ch in self.rts_df.index:
+
+        if (self.current_ch in self.rts_df.index) and (self.rts_df.rt[self.current_ch] > 0):
             self.ui_edf.spinBoxRtOnset.setValue(int(self.rts_df.loc[self.current_ch, "rt"]))
+            print(self.ui_edf.spinBoxRtOnset.value())
+        else:
+            print("auto rt", self.auto_rt)
+            if self.ui_edf.checkBoxAutoSet.isChecked():
+                self.ui_edf.spinBoxRtOnset.setValue(int(self.auto_rt * self.sample_rate))
+
         self.autoscale()
 
     def no_rt(self):
