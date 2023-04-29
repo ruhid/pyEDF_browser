@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/RT_DATA/e_rand/e_rand_v032_touch_monitor" vcs="Git" />
   </component>
 </project>

@@ -201,7 +201,7 @@ class MyForm(QMainWindow):
         self.ui_edf.tableViewRTS_plot_window.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.ui_edf.tableViewRTS_plot_window.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.ui_edf.tableViewRTS_plot_window.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.ui_edf.tableViewRTS_plot_window.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        #self.ui_edf.tableViewRTS_plot_window.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         self.ui.tableViewEdf_UI.setModel(self.model)
         #self.ui_edf.tableViewRTS_plot_window.verticalScrollBar().setValue(self.ui_edf.tableViewRTS_plot_window.verticalScrollBar().maximum())
