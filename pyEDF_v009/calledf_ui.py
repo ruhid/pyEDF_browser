@@ -280,7 +280,6 @@ class MyForm(QMainWindow):
                                        pen=pg.mkPen('y', width=2))
         self.auto_rt=onset
 
-
     def set_auto_rt(self):
         if not self.ui_edf.checkBoxAutoDetect.isChecked():
             self.auto_rt=0
@@ -340,7 +339,9 @@ class MyForm(QMainWindow):
             print("auto rt", self.auto_rt)
             if self.ui_edf.checkBoxAutoSet.isChecked():
                 self.ui_edf.spinBoxRtOnset.setValue(int(self.auto_rt*self.sample_rate))
-        self.autoscale()
+        self.ui_edf.plainTextEditNote.setText("inc")
+        QTimer.singleShot(100,
+                          lambda:self.autoscale())
 
     def channel_backw(self):
         if self.current_ch_index >= 0:
@@ -361,11 +362,14 @@ class MyForm(QMainWindow):
             if self.ui_edf.checkBoxAutoSet.isChecked():
                 self.ui_edf.spinBoxRtOnset.setValue(int(self.auto_rt * self.sample_rate))
 
-        self.autoscale()
+        self.ui_edf.plainTextEditNote.setText("inc")
+        QTimer.singleShot(100,
+                          lambda:self.autoscale())
 
     def no_rt(self):
         self.ui_edf.spinBoxRtOnset.setValue(0)
         self.ui_edf.horizontalSliderRtOnset.setValue(0)
+        self.auto_rt=0
 
     def show_edf_plot_window(self):
         self.DialogAnalog.show()

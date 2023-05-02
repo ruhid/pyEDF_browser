@@ -455,6 +455,7 @@ class Ui_DialogAnalog(object):
         self.horizontalSliderRtOnset.sliderMoved['int'].connect(self.spinBoxRtOnset.setValue) # type: ignore
         self.spinBoxRtOnset.valueChanged['int'].connect(self.horizontalSliderRtOnset.setValue) # type: ignore
         self.checkBoxAutoDetect.clicked['bool'].connect(self.checkBoxAutoSet.setEnabled) # type: ignore
+        self.checkBoxAutoDetect.clicked['bool'].connect(self.checkBoxAutoSet.setChecked) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(DialogAnalog)
 
     def retranslateUi(self, DialogAnalog):
